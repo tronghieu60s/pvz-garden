@@ -1,5 +1,11 @@
 # Garden Game
 
+## Sources
+
+Images: https://plantsvszombies.fandom.com/wiki/Peashooter
+
+Soundtrack: https://www.nhaccuatui.com/playlist/plants-vs-zombies-1-soundtrack-laura-shigihara.8GPJbMyb5axu.html?st=14
+
 ## Installation
 
 **We recommend using `yarn` on this project.**
