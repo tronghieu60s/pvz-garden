@@ -20,7 +20,7 @@
 
 .gd-container-game {
   position: relative;
-  width: 850px;
+  width: 1000px;
   height: 500px;
   background-image: url(/assets/images/inf/background1.jpg);
   background-repeat: no-repeat;
@@ -29,7 +29,7 @@
 
 .gd-garden {
   position: absolute;
-  left: 24.5%;
+  left: 20.5%;
   top: 14%;
   width: 606px;
   height: 405px;
@@ -128,4 +128,16 @@
   left: 65%;
   transform: translate(-50%, -50%);
   color: green;
+}
+
+.glove {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  background-image: url(/assets/images/inf/glove.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }

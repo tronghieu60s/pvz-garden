@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CoinBank from "./components/CoinBank";
 import Garden from "./components/Garden";
+import Glove from "./components/Glove";
 import SendBack from "./components/SendBank";
 import plants from "./constants/plants";
 import { objectToArray } from "./helpers/commonFunctions";
@@ -14,6 +15,7 @@ export default function App() {
 
   const [choosePlant, setChoosePlant] = useState(planting[0]);
   const [isSelectedPlant, setIsSelectedPlant] = useState(false);
+  const [coinBankVal, setCoinBankVal] = useState(100);
 
   useEffect(() => {
     // block dragging of images
@@ -34,8 +36,11 @@ export default function App() {
           planting={planting}
           choosePlant={choosePlant}
           isSelectedPlant={isSelectedPlant}
+          coinBankVal={coinBankVal}
+          setCoinBankVal={setCoinBankVal}
         />
-        <CoinBank />
+        <CoinBank coinBankVal={coinBankVal} />
+        <Glove />
       </div>
     </div>
   );
