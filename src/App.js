@@ -26,6 +26,7 @@ export default function App() {
           plants={plantsList}
           choosePlant={choosePlant}
           setChoosePlant={setChoosePlant}
+          isSelectedPlant={isSelectedPlant}
           setIsSelectedPlant={setIsSelectedPlant}
         />
         <Garden
