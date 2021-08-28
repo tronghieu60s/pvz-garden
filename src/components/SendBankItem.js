@@ -1,13 +1,15 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 export default function sendBankItem(props) {
-  const { plant, active = true, choosePlantKey, setChoosePlantKey } = props;
- 
+  const { plant, active = true, choosePlant, setChoosePlant } = props;
+
   return (
     <div
-      className={`gd-sendBank-item${choosePlantKey !== plant.key ? " active" : ""}`}
+      className={`gd-sendBank-item${
+        choosePlant.key !== plant.key ? " active" : ""
+      }`}
       onClick={() => {
-        setChoosePlantKey(plant.key);
+        setChoosePlant(plant);
       }}
     >
       <img src={plant.image1b} alt="" />

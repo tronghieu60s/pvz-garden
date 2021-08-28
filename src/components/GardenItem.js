@@ -1,18 +1,36 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useRef } from "react";
+import plants from "../constants/plants";
+import { objectToArray } from "../helpers/commonFunctions";
 
-export default function GardenItem(props) {
-  const { image } = props;
+const plantsList = objectToArray(plants);
+
+export default (props) => {
+  const { plant, choosePlant, positionGardenItem } = props;
+  const [plantItem, setPlantItem] = useState({
+    image: null,
+    point: null,
+  });
+  const chooseGardenItem = useRef(null);
 
   return (
-    <div className="gd-garden-item">
-      {image && (
+    <div
+      className="gd-garden-item"
+      onClick={() => {
+        chooseGardenItem.current = positionGardenItem;
+        setPlantItem({
+          image2: choosePlant.image2,
+          point: choosePlant.point,
+        });
+      }}
+    >
+      {plant && (
         <Fragment>
           <div className="gd-garden-image">
-            <img src={image} />
+            <img src={plantItem.image2} />
           </div>
-          <div className="gd-garden-item-timer">50</div>
+          <div className="gd-garden-item-timer">{plantItem.point}</div>
         </Fragment>
       )}
     </div>
   );
-}
+};
