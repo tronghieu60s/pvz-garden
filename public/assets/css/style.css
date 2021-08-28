@@ -130,14 +130,22 @@
   color: green;
 }
 
-.glove {
+.bank {
   position: absolute;
   top: 20px;
   right: 50px;
-  width: 80px;
-  height: 80px;
-  background-image: url(/assets/images/inf/glove.png);
+  width: 70px;
+  height: 72px;
+  background-image: url(/assets/images/inf/bank.png);
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
+}
+
+.glove {
+  width: 70px;
+  height: 80px;
+  background-image: url(/assets/images/inf/glove.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }

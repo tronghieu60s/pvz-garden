@@ -1,5 +1,9 @@
 import React from "react";
 
 export default () => {
-  return <div className="glove"></div>;
+  return (
+    <div className="bank">
+      <div className="glove"></div>
+    </div>
+  );
 };

@@ -42,7 +42,7 @@ export default (props) => {
             } else {
               chooseGardenItem.current = positionGardenItem;
               setPlantItem({
-                image2: choosePlant.image2,
+                image1: choosePlant.image1,
                 purchasePrice: choosePlant.purchasePrice,
                 timer: choosePlant.timer,
               });
@@ -55,7 +55,7 @@ export default (props) => {
       {plant && (
         <Fragment>
           <div className="gd-garden-image">
-            <img src={plantItem.image2} />
+            <img src={plantItem.image1} />
           </div>
           <div className="gd-garden-item-timer">{plantItem.timer}</div>
         </Fragment>
