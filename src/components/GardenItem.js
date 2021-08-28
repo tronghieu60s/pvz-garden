@@ -9,13 +9,13 @@ export default (props) => {
     coinBankVal,
     setCoinBankVal,
   } = props;
+
   const [plantItem, setPlantItem] = useState({
     image: null,
     purchasePrice: null,
     timer: null,
   });
   const [isPlanted, setIsPlanted] = useState(false); //check plant đã dc trồng hay chưa
-  const [isStillHaveMoney, setIsStillHaveMoney] = useState(true); //check đủ tiền mua cây hay ko
   const chooseGardenItem = useRef(null);
 
   useEffect(() => {

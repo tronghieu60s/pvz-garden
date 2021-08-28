@@ -9,6 +9,7 @@ export default (props) => {
     coinBankVal,
     setCoinBankVal,
   } = props;
+
   return (
     <div className="gd-garden">
       {planting.map((plant, index) => (
