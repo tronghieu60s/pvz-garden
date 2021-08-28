@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SendBackItem from "./SendBankItem";
 
 export default function SendBank(props) {
-  const { plants, choosePlant, setChoosePlant } = props;
+  const { plants, choosePlant, setChoosePlant, setIsSelectedPlant } = props;
   return (
     <div className="gd-sendBank">
       {plants.map((item) => (
@@ -11,6 +11,7 @@ export default function SendBank(props) {
           plant={item}
           choosePlant={choosePlant}
           setChoosePlant={setChoosePlant}
+          setIsSelectedPlant={setIsSelectedPlant}
         />
       ))}
     </div>

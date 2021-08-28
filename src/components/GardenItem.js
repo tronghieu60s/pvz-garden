@@ -1,11 +1,7 @@
 import React, { Fragment, useState, useRef } from "react";
-import plants from "../constants/plants";
-import { objectToArray } from "../helpers/commonFunctions";
-
-const plantsList = objectToArray(plants);
 
 export default (props) => {
-  const { plant, choosePlant, positionGardenItem } = props;
+  const { plant, choosePlant, positionGardenItem, isSelectedPlant } = props;
   const [plantItem, setPlantItem] = useState({
     image: null,
     point: null,
@@ -16,6 +12,7 @@ export default (props) => {
     <div
       className="gd-garden-item"
       onClick={() => {
+        if (!isSelectedPlant) alert("Vui lòng chọn câyyyyyyyyyyyyyyyyyyyyyy");
         chooseGardenItem.current = positionGardenItem;
         setPlantItem({
           image2: choosePlant.image2,

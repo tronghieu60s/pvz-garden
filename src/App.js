@@ -12,6 +12,7 @@ export default function App() {
   ]);
 
   const [choosePlant, setChoosePlant] = useState(planting[0]);
+  const [isSelectedPlant, setIsSelectedPlant] = useState(false);
 
   useEffect(() => {
     // block dragging of images
@@ -25,11 +26,12 @@ export default function App() {
           plants={plantsList}
           choosePlant={choosePlant}
           setChoosePlant={setChoosePlant}
+          setIsSelectedPlant={setIsSelectedPlant}
         />
         <Garden
           planting={planting}
-          setPlanting={setPlanting}
           choosePlant={choosePlant}
+          isSelectedPlant={isSelectedPlant}
         />
       </div>
     </div>

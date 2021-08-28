@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function sendBankItem(props) {
-  const { plant, active = true, choosePlant, setChoosePlant } = props;
+  const { plant, choosePlant, setChoosePlant, setIsSelectedPlant } = props;
 
   return (
     <div
@@ -10,6 +10,7 @@ export default function sendBankItem(props) {
       }`}
       onClick={() => {
         setChoosePlant(plant);
+        setIsSelectedPlant(true);
       }}
     >
       <img src={plant.image1b} alt="" />
