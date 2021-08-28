@@ -1,12 +1,14 @@
 import React from "react";
-import Hello from "./components/Hello";
-import background1 from './assets/images/background1.jpg';
+import Garden from "./components/Garden";
+import SendBack from "./components/SendBank";
 
 export default function App() {
   return (
-    <div>
-      <Hello />
-      <img src={background1} />
+    <div className="gd-container">
+      <div className="gd-container-game">
+        <SendBack />
+        <Garden />
+      </div>
     </div>
   );
 }

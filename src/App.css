@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.gd-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.gd-container-game {
+  position: relative;
+  width: 850px;
+  height: 500px;
+  background-image: url(./assets/images/inf/background1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gd-garden {
+  position: absolute;
+  left: 24.5%;
+  top: 14%;
+  width: 606px;
+  height: 405px;
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+}
+
+.gd-garden-item {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  cursor: pointer;
+  background-color: #fff0;
+  padding-bottom: 18px;
+}
+
+.gd-garden-item:hover {
+  background-color: #ffffff60;
+}
+
+.gd-garden-item-timer {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 12px;
+}
+
+.gd-garden-image {
+  width: 56px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gd-garden-image img {
+  max-width: 100%;
+}
+
+.gd-sendBank {
+  position: absolute;
+  padding: 12px;
+}
+
+.gd-sendBank-item {
+  position: relative;
+  width: 90px;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.gd-sendBank-item-point {
+  width: 20px;
+  position: absolute;
+  right: 17px;
+  bottom: 3px;
+  font-size: 12px;
+}
+
+.gd-sendBank-item img {
+  width: 100%;
+}
+
+.gd-sendBank-item img:nth-child(1) {
+  display: none;
+}
+
+.gd-sendBank-item img:nth-child(2) {
+  display: block;
+}
+
+.gd-sendBank-item.active img:nth-child(1) {
+  display: block;
+}
+
+.gd-sendBank-item.active img:nth-child(2) {
+  display: none;
+}
