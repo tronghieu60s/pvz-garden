@@ -73,6 +73,7 @@
 .gd-sendBank {
   position: absolute;
   padding: 12px;
+  left: 50px;
 }
 
 .gd-sendBank-item {
@@ -108,4 +109,23 @@
 
 .gd-sendBank-item.active img:nth-child(2) {
   display: block;
+}
+
+.coinbank {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  width: 128px;
+  height: 31px;
+  background-image: url(/assets/images/inf/coinbank.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.coinbank-val {
+  position: absolute;
+  top: 60%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  color: green;
 }

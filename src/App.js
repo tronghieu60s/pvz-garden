@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CoinBank from "./components/CoinBank";
 import Garden from "./components/Garden";
 import SendBack from "./components/SendBank";
 import plants from "./constants/plants";
@@ -34,6 +35,7 @@ export default function App() {
           choosePlant={choosePlant}
           isSelectedPlant={isSelectedPlant}
         />
+        <CoinBank />
       </div>
     </div>
   );
