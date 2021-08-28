@@ -15,7 +15,9 @@ export default function sendBankItem(props) {
     >
       <img src={plant.image1b} alt="" />
       <img src={plant.image2b} alt="" />
-      <div className="gd-sendBank-item-point">{plant.point}</div>
+      <div className="gd-sendBank-item-purchase-price">
+        {plant.purchasePrice}
+      </div>
     </div>
   );
 }

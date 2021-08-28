@@ -4,7 +4,7 @@ export default (props) => {
   const { plant, choosePlant, positionGardenItem, isSelectedPlant } = props;
   const [plantItem, setPlantItem] = useState({
     image: null,
-    point: null,
+    purchasePrice: null,
   });
   const chooseGardenItem = useRef(null);
 
@@ -16,7 +16,7 @@ export default (props) => {
         chooseGardenItem.current = positionGardenItem;
         setPlantItem({
           image2: choosePlant.image2,
-          point: choosePlant.point,
+          purchasePrice: choosePlant.purchasePrice,
         });
       }}
     >
@@ -25,7 +25,7 @@ export default (props) => {
           <div className="gd-garden-image">
             <img src={plantItem.image2} />
           </div>
-          <div className="gd-garden-item-timer">{plantItem.point}</div>
+          <div className="gd-garden-item-timer">{plantItem.purchasePrice}</div>
         </Fragment>
       )}
     </div>
