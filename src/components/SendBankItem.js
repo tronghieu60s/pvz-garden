@@ -3,10 +3,6 @@ import React, { useState } from "react";
 export default function sendBankItem(props) {
   const { plant, choosePlant, setChoosePlant, setIsSelectedPlant } = props;
 
-  const [planting, setPlanting] = useState([
-    ...Array(45).fill({ image: null, point: null, key: null }),
-  ]);
-
   const [isActivePlant, setIsActivePlant] = useState(false); // check selected plant in left column
 
   return (
@@ -16,7 +12,7 @@ export default function sendBankItem(props) {
       }`}
       onClick={() => {
         if (isActivePlant) {
-          setChoosePlant(planting[0]);
+          setChoosePlant({ image: null, point: null, key: null });
           setIsSelectedPlant(false); //check for alert Vui lòng chọn cây
           setIsActivePlant(false);
         } else {

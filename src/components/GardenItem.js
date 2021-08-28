@@ -1,14 +1,8 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 export default (props) => {
-  const {
-    plant,
-    choosePlant,
-    positionGardenItem,
-    isSelectedPlant,
-    coinBankVal,
-    setCoinBankVal,
-  } = props;
+  const { plant, choosePlant, isSelectedPlant, coinBankVal, setCoinBankVal } =
+    props;
 
   const [plantItem, setPlantItem] = useState({
     image: null,
@@ -16,7 +10,6 @@ export default (props) => {
     timer: null,
   });
   const [isPlanted, setIsPlanted] = useState(false); //check plant đã dc trồng hay chưa
-  const chooseGardenItem = useRef(null);
 
   useEffect(() => {
     if (
@@ -40,7 +33,6 @@ export default (props) => {
             if (coinBankVal < choosePlant.purchasePrice) {
               alert("Không đủ tiền");
             } else {
-              chooseGardenItem.current = positionGardenItem;
               setPlantItem({
                 image1: choosePlant.image1,
                 purchasePrice: choosePlant.purchasePrice,

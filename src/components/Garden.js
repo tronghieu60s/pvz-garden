@@ -17,7 +17,6 @@ export default (props) => {
           key={index}
           plant={plant}
           choosePlant={choosePlant}
-          positionGardenItem={index}
           isSelectedPlant={isSelectedPlant}
           coinBankVal={coinBankVal}
           setCoinBankVal={setCoinBankVal}
