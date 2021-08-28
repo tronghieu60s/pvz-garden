@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 
 export default function sendBankItem(props) {
-  const {
-    plant,
-    choosePlant,
-    setChoosePlant,
-    isSelectedPlant,
-    setIsSelectedPlant,
-  } = props;
+  const { plant, choosePlant, setChoosePlant, setIsSelectedPlant } = props;
+
   const [planting, setPlanting] = useState([
     ...Array(45).fill({ image: null, point: null, key: null }),
   ]);
+
   const [isActivePlant, setIsActivePlant] = useState(false); // check selected plant in left column
+
   return (
     <div
       className={`gd-sendBank-item${

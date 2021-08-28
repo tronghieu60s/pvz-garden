@@ -14,12 +14,11 @@ export default (props) => {
     purchasePrice: null,
     timer: null,
   });
-  const [isPlanted, setIsPlanted] = useState(false);
-  const [isStillHaveMoney, setIsStillHaveMoney] = useState(false);
+  const [isPlanted, setIsPlanted] = useState(false); //check plant đã dc trồng hay chưa
+  const [isStillHaveMoney, setIsStillHaveMoney] = useState(true); //check đủ tiền mua cây hay ko
   const chooseGardenItem = useRef(null);
 
   useEffect(() => {
-    console.log(plantItem.purchasePrice);
     if (
       plantItem.purchasePrice !== null &&
       coinBankVal >= plantItem.purchasePrice
@@ -38,8 +37,8 @@ export default (props) => {
           if (isPlanted) {
             alert("Cây đã được trồng, vui lòng chọn ô khác");
           } else {
-            if (isStillHaveMoney) {
-              alert("Không đủ tiền, vui lòng nạp thêm");
+            if (coinBankVal < choosePlant.purchasePrice) {
+              alert("Không đủ tiền");
             } else {
               chooseGardenItem.current = positionGardenItem;
               setPlantItem({

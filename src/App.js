@@ -13,9 +13,9 @@ export default function App() {
     ...Array(45).fill({ image: null, point: null, key: null }),
   ]);
 
-  const [choosePlant, setChoosePlant] = useState(planting[0]);
-  const [isSelectedPlant, setIsSelectedPlant] = useState(false);
-  const [coinBankVal, setCoinBankVal] = useState(100);
+  const [choosePlant, setChoosePlant] = useState(planting[0]); //info plant
+  const [isSelectedPlant, setIsSelectedPlant] = useState(false); //check đã chọn cây hay chưa
+  const [coinBankVal, setCoinBankVal] = useState(100); //money
 
   useEffect(() => {
     // block dragging of images

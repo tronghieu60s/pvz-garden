@@ -9,6 +9,7 @@ export default function SendBank(props) {
     isSelectedPlant,
     setIsSelectedPlant,
   } = props;
+
   return (
     <div className="gd-sendBank">
       {plants.map((item) => (
