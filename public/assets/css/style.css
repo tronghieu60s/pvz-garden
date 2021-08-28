@@ -22,7 +22,7 @@
   position: relative;
   width: 850px;
   height: 500px;
-  background-image: url(./assets/images/inf/background1.jpg);
+  background-image: url(/assets/images/inf/background1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -85,7 +85,7 @@
 .gd-sendBank-item-point {
   width: 20px;
   position: absolute;
-  right: 17px;
+  right: 15px;
   bottom: 3px;
   font-size: 12px;
 }
@@ -95,17 +95,17 @@
 }
 
 .gd-sendBank-item img:nth-child(1) {
-  display: none;
+  display: block;
 }
 
 .gd-sendBank-item img:nth-child(2) {
-  display: block;
+  display: none;
 }
 
 .gd-sendBank-item.active img:nth-child(1) {
-  display: block;
+  display: none;
 }
 
 .gd-sendBank-item.active img:nth-child(2) {
-  display: none;
+  display: block;
 }

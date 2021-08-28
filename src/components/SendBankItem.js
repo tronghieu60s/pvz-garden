@@ -1,11 +1,12 @@
 import React from "react";
 
-export default function sendBankItem() {
+export default function sendBankItem(props) {
+  const { plant, active = true } = props;
   return (
-    <div className="gd-sendBank-item active">
-      <img src="./src/plantb/PlantB1A.png" alt="" />
-      <img src="./src/plantb/PlantB1B.png" alt="" />
-      <div className="gd-sendBank-item-point">300</div>
+    <div className={`gd-sendBank-item${active ? " active" : ""}`}>
+      <img src={plant.image1b} alt="" />
+      <img src={plant.image2b} alt="" />
+      <div className="gd-sendBank-item-point">{plant.point}</div>
     </div>
   );
 }

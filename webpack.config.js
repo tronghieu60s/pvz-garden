@@ -24,19 +24,6 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
-      {
-        test: /\.(gif|jpe?g|png|svg)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "[name].[ext]",
-          },
-        },
-      },
-      {
-        test: /\.(gif|jpe?g|png|svg)$/,
-        loader: "url-loader",
-      },
     ],
   },
   plugins: [
