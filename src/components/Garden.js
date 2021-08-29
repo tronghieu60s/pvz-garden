@@ -2,11 +2,25 @@ import React from "react";
 import GardenItem from "./GardenItem";
 
 export default function Garden(props) {
-  const { plants } = props;
+  const {
+    planting,
+    choosePlant,
+    isSelectedPlant,
+    coinBankVal,
+    setCoinBankVal,
+  } = props;
+
   return (
     <div className="gd-garden">
-      {plants.map((plant, index) => (
-        <GardenItem key={index} plant={plant} />
+      {planting.map((plant, index) => (
+        <GardenItem
+          key={index}
+          plant={plant}
+          choosePlant={choosePlant}
+          isSelectedPlant={isSelectedPlant}
+          coinBankVal={coinBankVal}
+          setCoinBankVal={setCoinBankVal}
+        />
       ))}
     </div>
   );
