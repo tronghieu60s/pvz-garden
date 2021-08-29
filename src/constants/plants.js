@@ -7,7 +7,7 @@ export default {
     image3: "./assets/images/plant/Plant1B.gif",
     purchasePrice: 50,
     salePrice: 150,
-    timer: 5000,
+    timer: 50,
   },
   plant2: {
     image1b: "./assets/images/plantb/PlantB2A.png",
@@ -17,7 +17,7 @@ export default {
     image3: "./assets/images/plant/Plant2B.gif",
     purchasePrice: 100,
     salePrice: 300,
-    timer: 5000,
+    timer: 50,
   },
   plant3: {
     image1b: "./assets/images/plantb/PlantB3A.png",
@@ -27,7 +27,7 @@ export default {
     image3: "./assets/images/plant/Plant3B.gif",
     purchasePrice: 150,
     salePrice: 450,
-    timer: 5000,
+    timer: 50,
   },
   plant4: {
     image1b: "./assets/images/plantb/PlantB4A.png",
@@ -37,7 +37,7 @@ export default {
     image3: "./assets/images/plant/Plant4B.gif",
     purchasePrice: 50,
     salePrice: 150,
-    timer: 5000,
+    timer: 50,
   },
   plant5: {
     image1b: "./assets/images/plantb/PlantB5A.png",
@@ -47,7 +47,7 @@ export default {
     image3: "./assets/images/plant/Plant5B.gif",
     purchasePrice: 175,
     salePrice: 525,
-    timer: 5000,
+    timer: 50,
   },
   plant6: {
     image1b: "./assets/images/plantb/PlantB6A.png",
@@ -57,7 +57,7 @@ export default {
     image3: "./assets/images/plant/Plant6B.gif",
     purchasePrice: 50,
     salePrice: 150,
-    timer: 5000,
+    timer: 50,
   },
   plant7: {
     image1b: "./assets/images/plantb/PlantB7A.png",
@@ -67,6 +67,6 @@ export default {
     image3: "./assets/images/plant/Plant7B.gif",
     purchasePrice: 200,
     salePrice: 600,
-    timer: 5000,
+    timer: 50,
   },
 };

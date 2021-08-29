@@ -1,29 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function sendBankItem(props) {
-  const { plant, choosePlant, setChoosePlant, setIsSelectedPlant } = props;
-
-  const [isActivePlant, setIsActivePlant] = useState(false); // check selected plant in left column
-
+  const { plant, choosePlant, setChoosePlant } = props;
   return (
     <div
       className={`gd-sendBank-item${
-        choosePlant.key !== plant.key ? " active" : ""
+        plant?.key !== choosePlant?.key ? " active" : ""
       }`}
-      onClick={() => {
-        if (isActivePlant) {
-          setChoosePlant({ image: null, point: null, key: null });
-          setIsSelectedPlant(false); //check for alert Vui lòng chọn cây
-          setIsActivePlant(false);
-        } else {
-          setChoosePlant(plant);
-          setIsSelectedPlant(true);
-          setIsActivePlant(true);
-        }
-      }}
+      onClick={setChoosePlant}
     >
-      <img src={plant.image1b} alt="" />
-      <img src={plant.image2b} alt="" />
+      <img src={plant.image1b} />
+      <img src={plant.image2b} />
       <div className="gd-sendBank-item-purchase-price">
         {plant.purchasePrice}
       </div>

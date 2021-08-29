@@ -7,3 +7,13 @@ export const objectToArray = (object, nameKey = "key") => {
   }
   return objectArr;
 };
+
+export const isEmptyObject = (obj) => {
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      return false;
+    }
+  }
+
+  return JSON.stringify(obj) === JSON.stringify({});
+};

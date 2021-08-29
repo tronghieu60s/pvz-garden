@@ -4,23 +4,41 @@ import Garden from "./components/Garden";
 import Glove from "./components/Glove";
 import SendBack from "./components/SendBank";
 import plants from "./constants/plants";
-import { objectToArray } from "./helpers/commonFunctions";
+import { objectToArray, isEmptyObject } from "./helpers/commonFunctions";
 
 const plantsList = objectToArray(plants);
 
 export default function App() {
-  const [planting, setPlanting] = useState([
-    ...Array(45).fill({ image: null, point: null, key: null }),
-  ]);
-
-  const [choosePlant, setChoosePlant] = useState(planting[0]); //info plant
-  const [isSelectedPlant, setIsSelectedPlant] = useState(false); //check đã chọn cây hay chưa
-  const [coinBankVal, setCoinBankVal] = useState(100); //money
+  const [coinBankVal, setCoinBankVal] = useState(1000); //money
+  const [plants, setPlants] = useState([...Array(45).fill({})]);
+  const [choosePlant, setChoosePlant] = useState(null);
 
   useEffect(() => {
     // block dragging of images
     window.ondragstart = () => false;
   }, []);
+
+  const handleSetPlants = (index) => {
+    // check plant exists and selected
+    if (!choosePlant) {
+      return alert("Vui lòng chọn cây cần trồng trước.");
+    }
+    if (!isEmptyObject(plants[index])) {
+      return alert("Cây đã được trồng, vui lòng chọn ô khác.");
+    }
+
+    // price action
+    const coinPrice = coinBankVal - choosePlant.purchasePrice;
+    if (coinPrice < 0) {
+      return alert("Bro không có đủ tiền. Hãy nạp lần đầu đi bro!!!");
+    }
+    setCoinBankVal(coinPrice);
+
+    // set plants
+    const newPlants = [...plants];
+    newPlants[index] = choosePlant;
+    setPlants(newPlants);
+  };
 
   return (
     <div className="gd-container">
@@ -29,16 +47,8 @@ export default function App() {
           plants={plantsList}
           choosePlant={choosePlant}
           setChoosePlant={setChoosePlant}
-          isSelectedPlant={isSelectedPlant}
-          setIsSelectedPlant={setIsSelectedPlant}
         />
-        <Garden
-          planting={planting}
-          choosePlant={choosePlant}
-          isSelectedPlant={isSelectedPlant}
-          coinBankVal={coinBankVal}
-          setCoinBankVal={setCoinBankVal}
-        />
+        <Garden plants={plants} setPlants={handleSetPlants} />
         <CoinBank coinBankVal={coinBankVal} />
         <Glove />
       </div>
