@@ -4,8 +4,8 @@ export default function CoinBank(props) {
   const { coinBankVal } = props;
 
   return (
-    <div className="coinBank">
-      <div className="coinBank-val">{coinBankVal}</div>
+    <div className="gd-coinBank">
+      <div className="gd-coinBank-val">{coinBankVal}</div>
     </div>
   );
 }

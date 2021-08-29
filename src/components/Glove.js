@@ -8,8 +8,8 @@ export default function Glove() {
   };
 
   return (
-    <div className="bank" onClick={() => handleGetGlove()}>
-      <div className={isGetGlove ? "" : "glove"}></div>
+    <div className="gd-bank" onClick={() => handleGetGlove()}>
+      <div className={isGetGlove ? "" : "gd-glove"}></div>
     </div>
   );
 }
