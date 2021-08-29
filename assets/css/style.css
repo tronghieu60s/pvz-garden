@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.gd-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.gd-container-game {
+  position: relative;
+  width: 1000px;
+  height: 500px;
+  background-image: url(../images/inf/background1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gd-garden {
+  position: absolute;
+  left: 20.5%;
+  top: 14%;
+  width: 606px;
+  height: 405px;
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+}
+
+.gd-garden-item {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  cursor: pointer;
+  background-color: #fff0;
+  padding-bottom: 18px;
+}
+
+.gd-garden-item:hover {
+  background-color: #ffffff60;
+}
+
+.gd-garden-item-timer {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 12px;
+}
+
+.gd-garden-image {
+  width: 56px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gd-garden-image img {
+  max-width: 100%;
+}
+
+.gd-sendBank {
+  position: absolute;
+  padding: 12px;
+  left: 50px;
+}
+
+.gd-sendBank-item {
+  position: relative;
+  width: 90px;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.gd-sendBank-item-purchase-price {
+  width: 20px;
+  position: absolute;
+  right: 15px;
+  bottom: 3px;
+  font-size: 12px;
+}
+
+.gd-sendBank-item img {
+  width: 100%;
+}
+
+.gd-sendBank-item img:nth-child(1) {
+  display: block;
+}
+
+.gd-sendBank-item img:nth-child(2) {
+  display: none;
+}
+
+.gd-sendBank-item.active img:nth-child(1) {
+  display: none;
+}
+
+.gd-sendBank-item.active img:nth-child(2) {
+  display: block;
+}
+
+.coinBank {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  width: 128px;
+  height: 31px;
+  background-image: url(../images/inf/coinbank.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.coinBank-val {
+  position: absolute;
+  top: 60%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  color: green;
+}
+
+.bank {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  width: 70px;
+  height: 72px;
+  background-image: url(../images/inf/bank.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.glove {
+  width: 70px;
+  height: 80px;
+  background-image: url(../images/inf/glove.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
