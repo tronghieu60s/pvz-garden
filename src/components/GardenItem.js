@@ -22,6 +22,7 @@ export default memo(function GardenItem(props) {
     // plant status === 2 => did over time
     if (timer < 0 && plantStatus === 2) {
       deletePlant();
+      setIsOverTimer(false);
     }
   };
 
