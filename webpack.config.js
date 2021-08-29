@@ -29,7 +29,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      baseUrl: "./",
       template: path.join(__dirname, "public", "index.html"),
+      title: "Garden Now!!!",
     }),
     new CopyWebpackPlugin({
       patterns: [

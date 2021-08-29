@@ -22,7 +22,7 @@
   position: relative;
   width: 1000px;
   height: 500px;
-  background-image: url(/assets/images/inf/background1.jpg);
+  background-image: url(../images/inf/background1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -117,7 +117,7 @@
   left: 50px;
   width: 128px;
   height: 31px;
-  background-image: url(/assets/images/inf/coinbank.png);
+  background-image: url(../images/inf/coinbank.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -136,7 +136,7 @@
   right: 50px;
   width: 70px;
   height: 72px;
-  background-image: url(/assets/images/inf/bank.png);
+  background-image: url(../images/inf/bank.png);
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
@@ -145,7 +145,7 @@
 .glove {
   width: 70px;
   height: 80px;
-  background-image: url(/assets/images/inf/glove.png);
+  background-image: url(../images/inf/glove.png);
   background-repeat: no-repeat;
   background-size: contain;
 }

@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
     "serve": "webpack serve --mode development",
     "build": "webpack --mode production",
     "preinstall": "npx only-allow yarn"
@@ -13,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
