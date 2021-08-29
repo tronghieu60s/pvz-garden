@@ -18,7 +18,7 @@ export default function App() {
     window.ondragstart = () => false;
   }, []);
 
-  const handleSetPlants = (index) => {
+  const handleSetPlant = (index) => {
     // check plant exists and selected
     if (!choosePlant) {
       return alert("Vui lòng chọn cây cần trồng trước.");
@@ -40,6 +40,13 @@ export default function App() {
     setPlants(newPlants);
   };
 
+  const handleDeletePlant = (index) => {
+    // delete plants
+    const newPlants = [...plants];
+    newPlants[index] = {};
+    setPlants(newPlants);
+  };
+
   return (
     <div className="gd-container">
       <div className="gd-container-game">
@@ -48,7 +55,11 @@ export default function App() {
           choosePlant={choosePlant}
           setChoosePlant={setChoosePlant}
         />
-        <Garden plants={plants} setPlants={handleSetPlants} />
+        <Garden
+          plants={plants}
+          setPlant={handleSetPlant}
+          deletePlant={handleDeletePlant}
+        />
         <CoinBank coinBankVal={coinBankVal} />
         <Glove />
       </div>
