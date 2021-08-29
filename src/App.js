@@ -53,7 +53,9 @@ export default function App() {
         <SendBack
           plants={plantsList}
           choosePlant={choosePlant}
-          setChoosePlant={setChoosePlant}
+          setChoosePlant={(plant) =>
+            setChoosePlant(plant === choosePlant ? null : plant)
+          }
         />
         <Garden
           plants={plants}
