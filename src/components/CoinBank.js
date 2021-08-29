@@ -1,11 +1,11 @@
 import React from "react";
 
-export default (props) => {
+export default function CoinBank(props) {
   const { coinBankVal } = props;
 
   return (
-    <div className="coinbank">
-      <div className="coinbank-val">{coinBankVal}</div>
+    <div className="coinBank">
+      <div className="coinBank-val">{coinBankVal}</div>
     </div>
   );
-};
+}

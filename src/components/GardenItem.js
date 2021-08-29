@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 
-export default (props) => {
+export default function GardenItem(props) {
   const { plant, choosePlant, isSelectedPlant, coinBankVal, setCoinBankVal } =
     props;
 
@@ -54,4 +54,4 @@ export default (props) => {
       )}
     </div>
   );
-};
+}

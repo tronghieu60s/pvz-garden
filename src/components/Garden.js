@@ -1,7 +1,7 @@
 import React from "react";
 import GardenItem from "./GardenItem";
 
-export default (props) => {
+export default function Garden(props) {
   const {
     planting,
     choosePlant,
@@ -24,4 +24,4 @@ export default (props) => {
       ))}
     </div>
   );
-};
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default () => {
+export default function Glove() {
   const [isGetGlove, setIsGetGlove] = useState(false);
 
   const handleGetGlove = () => {
@@ -12,4 +12,4 @@ export default () => {
       <div className={isGetGlove ? "" : "glove"}></div>
     </div>
   );
-};
+}
