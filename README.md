@@ -1,5 +1,9 @@
 # Garden Game
 
+![version](https://img.shields.io/github/package-json/v/tronghieu60s/garden-game)
+![code-size](https://img.shields.io/github/languages/code-size/tronghieu60s/garden-game)
+![license](https://img.shields.io/github/license/tronghieu60s/garden-game)
+
 ## Sources
 
 Images: https://plantsvszombies.fandom.com/wiki/Peashooter
