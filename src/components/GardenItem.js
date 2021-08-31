@@ -3,14 +3,14 @@ import React, { Fragment, memo, useEffect, useState } from "react";
 export default memo(function GardenItem(props) {
   const { plant, setPlant, deletePlant } = props;
 
-  const [plantStatus, setPlantStatus] = useState(0);
+  const [plantStatus, setPlantStatus] = useState(0); //0: Seed, 1: Can't harvested, 2: Can harvested
 
   const [timer, setTimer] = useState(plant.timer || 0);
   const [isOverTimer, setIsOverTimer] = useState(false);
 
   const handleStatusPlant = () => {
-    // half of time tree change to level 1
-    if (timer < plant?.timer / 2 && plantStatus < 1) {
+    // time tree change to level 1
+    if (timer < plant?.timer && plantStatus < 1) {
       setPlantStatus(1);
     }
     // the plant has grown and set over time
@@ -23,6 +23,10 @@ export default memo(function GardenItem(props) {
     if (timer < 0 && plantStatus === 2) {
       deletePlant();
       setIsOverTimer(false);
+    }
+    // replant on the same plot of land -> status grown plant === 0
+    if (!isOverTimer) {
+      setPlantStatus(0);
     }
   };
 
@@ -49,7 +53,7 @@ export default memo(function GardenItem(props) {
           </div>
           <div
             className={`gd-garden-item-timer${
-              isOverTimer ? " over-timer" : ""
+              plantStatus === 2 ? " over-timer" : ""
             }`}
           >
             {timer?.toFixed(1)}

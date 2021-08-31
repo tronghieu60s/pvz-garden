@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import CoinBank from "./components/CoinBank";
 import Garden from "./components/Garden";
-import Glove from "./components/Glove";
 import SendBack from "./components/SendBank";
+import Sound from "./components/Sound";
+import Tools from "./components/Tools/Tools";
 import plants from "./constants/plants";
 import { objectToArray, isEmptyObject } from "./helpers/commonFunctions";
 
 const plantsList = objectToArray(plants);
 
 export default function App() {
-  const [coinBankVal, setCoinBankVal] = useState(1000); //money
+  const [coinBankVal, setCoinBankVal] = useState(99999); //money
   const [plants, setPlants] = useState([...Array(45).fill({})]);
   const [choosePlant, setChoosePlant] = useState(null);
+  const [isGetGlove, setIsGetGlove] = useState(false);
+  const [isNoMoreMoney, setIsNoMoreMoney] = useState(false);
+  const [modeTool, setModeTool] = useState("grow"); //grow, harvest, asperse, fertilize
 
   useEffect(() => {
     // block dragging of images
@@ -19,6 +23,9 @@ export default function App() {
   }, []);
 
   const handleSetPlant = (index) => {
+    const soundPlant = new Audio("./assets/sounds/plant.ogg");
+    //play sound plant
+    soundPlant.play();
     // check plant exists and selected
     if (!choosePlant) {
       return alert("Vui lòng chọn cây cần trồng trước.");
@@ -63,7 +70,8 @@ export default function App() {
           deletePlant={handleDeletePlant}
         />
         <CoinBank coinBankVal={coinBankVal} />
-        <Glove />
+        <Tools isGetGlove={isGetGlove} setIsGetGlove={setIsGetGlove} />
+        <Sound />
       </div>
     </div>
   );
