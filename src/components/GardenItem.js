@@ -1,8 +1,9 @@
 import React, { Fragment, memo, useEffect, useState } from "react";
 
 export default memo(function GardenItem(props) {
-  const { plant, setPlant, deletePlant } = props;
+  const { plant, choosePlant, setPlant, deletePlant } = props;
 
+  const [plantTemp, setPlantTemp] = useState(null);
   const [plantStatus, setPlantStatus] = useState(0); // 0: Seed, 1: Can't harvested, 2: Can harvested
 
   const [timer, setTimer] = useState(plant.timer || 0);
@@ -45,11 +46,20 @@ export default memo(function GardenItem(props) {
   });
 
   return (
-    <div className="gd-garden-item" onClick={setPlant}>
+    <div
+      className="gd-garden-item"
+      onClick={() => {
+        setPlant();
+        setPlantTemp(null);
+      }}
+      onMouseEnter={() => setPlantTemp(choosePlant?.image2)}
+      onMouseLeave={() => setPlantTemp(null)}
+    >
       {plant && (
         <Fragment>
           <div className="gd-garden-image">
             <img src={plant[`image${plantStatus + 1}`]} />
+            <img className="gd-garden-image-blur" src={plantTemp} />
           </div>
           <div
             className={`gd-garden-item-timer${

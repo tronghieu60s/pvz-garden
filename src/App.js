@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import CoinBank from "./components/CoinBank";
 import Garden from "./components/Garden";
 import SendBack from "./components/SendBank";
-import Tools from "./components/Tools/Tools";
+import Glove from "./components/Tools/Glove";
+import Shovel from "./components/Tools/Shovel";
 import plants from "./constants/plants";
 import { objectToArray, isEmptyObject } from "./helpers/commonFunctions";
 
 const plantsList = objectToArray(plants);
-const soundPlant = new Audio("./assets/sounds/plant.ogg");
 
 export default function App() {
   const [coinBankVal, setCoinBankVal] = useState(99999); //money
   const [plants, setPlants] = useState([...Array(45).fill({})]);
   const [choosePlant, setChoosePlant] = useState(null);
+
   const [isGetGlove, setIsGetGlove] = useState(false);
+  const [isGetShovel, setIsGetShovel] = useState(false);
   const [isNoMoreMoney, setIsNoMoreMoney] = useState(false);
   const [modeTool, setModeTool] = useState("grow"); //grow, harvest, asperse, fertilize
 
@@ -22,16 +24,13 @@ export default function App() {
     window.ondragstart = () => false;
 
     // sound track
-    const soundtrack = new Audio("./assets/sounds/soundtrack.mp3");
-    soundtrack.loop = true;
-    soundtrack.load();
-    soundtrack.play();
+    // const soundtrack = new Audio("./assets/sounds/soundtrack.mp3");
+    // soundtrack.loop = true;
+    // soundtrack.load();
+    // soundtrack.play();
   }, []);
 
   const handleSetPlant = (index) => {
-    // play sound plant
-    soundPlant.play();
-
     // check plant exists and selected
     if (!choosePlant) {
       return alert("Vui lòng chọn cây cần trồng trước.");
@@ -51,6 +50,11 @@ export default function App() {
     const newPlants = [...plants];
     newPlants[index] = choosePlant;
     setPlants(newPlants);
+    setChoosePlant(null);
+
+    // play sound plant
+    const soundPlant = new Audio("./assets/sounds/plant.ogg");
+    soundPlant.play();
   };
 
   const handleDeletePlant = (index) => {
@@ -72,11 +76,15 @@ export default function App() {
         />
         <Garden
           plants={plants}
+          choosePlant={choosePlant}
           setPlant={handleSetPlant}
           deletePlant={handleDeletePlant}
         />
         <CoinBank coinBankVal={coinBankVal} />
-        <Tools isGetGlove={isGetGlove} setIsGetGlove={setIsGetGlove} />
+        <div>
+          <Glove isGetGlove={isGetGlove} setIsGetGlove={setIsGetGlove} />
+          <Shovel isGetShovel={isGetShovel} setIsGetShovel={setIsGetShovel} />
+        </div>
       </div>
     </div>
   );
