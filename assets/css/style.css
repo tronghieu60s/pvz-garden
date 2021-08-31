@@ -40,6 +40,7 @@
 }
 
 .gd-garden-item {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -48,8 +49,10 @@
   padding-bottom: 18px;
 }
 
-.gd-garden-item:hover {
-  background-color: #ffffff60;
+.gd-garden-image-blur {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.8;
 }
 
 .gd-garden-item-timer {
@@ -151,10 +154,11 @@
   background-size: cover;
 }
 
-.gd-glove {
+.gd-bank-image {
   width: 70px;
-  height: 80px;
-  background-image: url(../images/tools/glove.png);
+  height: 100%;
   background-repeat: no-repeat;
+  background-position: center center;
   background-size: contain;
+  margin: auto;
 }
