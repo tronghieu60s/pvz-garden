@@ -3,7 +3,7 @@ import React, { Fragment, memo, useEffect, useState } from "react";
 export default memo(function GardenItem(props) {
   const { plant, setPlant, deletePlant } = props;
 
-  const [plantStatus, setPlantStatus] = useState(0); //0: Seed, 1: Can't harvested, 2: Can harvested
+  const [plantStatus, setPlantStatus] = useState(0); // 0: Seed, 1: Can't harvested, 2: Can harvested
 
   const [timer, setTimer] = useState(plant.timer || 0);
   const [isOverTimer, setIsOverTimer] = useState(false);
