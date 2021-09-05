@@ -9,6 +9,9 @@ import { objectToArray, isEmptyObject } from "./helpers/commonFunctions";
 
 const plantsList = objectToArray(plants);
 
+const pauseAudio = new Audio("./assets/sounds/pause.ogg");
+pauseAudio.load();
+
 export default function App() {
   const [coinBankVal, setCoinBankVal] = useState(500); //money
   const [plants, setPlants] = useState([...Array(45).fill({})]);
@@ -34,7 +37,7 @@ export default function App() {
       return alert("Vui lòng chọn cây cần trồng trước.");
     }
     if (!isEmptyObject(plants[index])) {
-      return alert("Cây đã được trồng, vui lòng chọn ô khác.");
+      return pauseAudio.play();
     }
 
     // price action
@@ -48,7 +51,6 @@ export default function App() {
     const newPlants = [...plants];
     newPlants[index] = choosePlant;
     setPlants(newPlants);
-    setChoosePlant(null);
 
     // play sound plant
     const soundPlant = new Audio("./assets/sounds/plant.ogg");

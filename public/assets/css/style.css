@@ -44,7 +44,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  position: relative;
   background-color: #fff0;
   padding-bottom: 18px;
 }
@@ -59,7 +58,7 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .gd-garden-item-timer.over-timer {
@@ -77,6 +76,14 @@
 
 .gd-garden-image img {
   max-width: 100%;
+}
+
+.gd-garden-image-coin {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  width: 17px;
+  height: 17px;
 }
 
 .gd-sendBank {
