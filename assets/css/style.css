@@ -44,7 +44,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  position: relative;
   background-color: #fff0;
   padding-bottom: 18px;
 }
@@ -59,7 +58,7 @@
   position: absolute;
   bottom: 5px;
   right: 5px;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .gd-garden-item-timer.over-timer {
@@ -79,10 +78,18 @@
   max-width: 100%;
 }
 
+.gd-garden-image-coin {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  width: 17px;
+  height: 17px;
+}
+
 .gd-sendBank {
   position: absolute;
   padding: 12px;
-  left: 50px;
+  left: 30px;
 }
 
 .gd-sendBank-item {
@@ -93,6 +100,10 @@
 }
 
 .gd-sendBank-item:hover {
+  transform: scale(1);
+}
+
+.gd-sendBank-item.active:hover {
   transform: scale(1.1);
 }
 
@@ -127,7 +138,7 @@
 .gd-coinBank {
   position: absolute;
   bottom: 20px;
-  left: 50px;
+  left: 30px;
   width: 128px;
   height: 31px;
   background-image: url(../images/inf/coinbank.png);
