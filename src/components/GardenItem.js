@@ -1,14 +1,26 @@
 import React, { Fragment, memo, useEffect, useState } from "react";
 import { isEmptyObject } from "../helpers/commonFunctions";
 
-export default memo(function GardenItem(props) {
-  const { plant, choosePlant, setPlant, deletePlant } = props;
+export default function GardenItem(props) {
+  const { plant, choosePlant, setPlant, deletePlant, harvestPlant } = props;
 
-  const [timer, setTimer] = useState(plant.timer || 0);
+  const [timer, setTimer] = useState(props.plant.timer || 0);
+  const [plantHarvest, setPlantHarvest] = useState(0);
   const [plantBlur, setPlantBlur] = useState(null);
   const [plantStatus, setPlantStatus] = useState(0);
 
-  const statusPlant = () => {
+  const plantHarvestHandler = () => {
+    setTimer(plant.timer / 2);
+    setPlantStatus(1);
+
+    const newPlantHarvest = plantHarvest + 1;
+    setPlantHarvest(newPlantHarvest);
+    if (newPlantHarvest >= 3) {
+      deletePlant();
+    }
+  };
+
+  const onPlantStatus = () => {
     if (timer < plant?.timer / 2 && plantStatus < 1) {
       // time tree change to level 1
       setPlantStatus(1);
@@ -18,10 +30,15 @@ export default memo(function GardenItem(props) {
       setPlantStatus(2);
       setTimer(plant.overTimer);
     }
+
+    // plant status === 2 => did over time
+    if (timer < 0 && plantStatus === 2) {
+      plantHarvestHandler();
+    }
   };
 
   useEffect(() => {
-    statusPlant();
+    onPlantStatus();
     // set timer count down
     if (timer > 0) {
       const timerCount = setInterval(() => {
@@ -35,8 +52,13 @@ export default memo(function GardenItem(props) {
   useEffect(() => setTimer(plant.timer), [plant]);
 
   const onClick = () => {
-    setPlant(plant);
-    setPlantStatus(0);
+    if (plantStatus < 2) {
+      setPlant();
+      setPlantStatus(0);
+    } else {
+      harvestPlant();
+      plantHarvestHandler();
+    }
   };
 
   const styleOvertime = plantStatus === 2 ? " over-timer" : "";
@@ -46,12 +68,15 @@ export default memo(function GardenItem(props) {
     <div
       className="gd-garden-item"
       onClick={onClick}
-      onMouseEnter={() => setPlantBlur(choosePlant?.image2)}
+      onMouseEnter={() => setPlantBlur(choosePlant?.image1)}
       onMouseLeave={() => setPlantBlur(null)}
     >
       {plant && (
         <Fragment>
-          <div className="gd-garden-image">
+          <div
+            className="gd-garden-image"
+            style={{ width: `${plant?.imageSize}px` }}
+          >
             <img src={imageSource} />
             {plantStatus === 2 && (
               <img
@@ -70,4 +95,4 @@ export default memo(function GardenItem(props) {
       )}
     </div>
   );
-});
+}

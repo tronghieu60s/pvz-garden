@@ -9,9 +9,6 @@ import { objectToArray, isEmptyObject } from "./helpers/commonFunctions";
 
 const plantsList = objectToArray(plants);
 
-const pauseAudio = new Audio("./assets/sounds/pause.ogg");
-pauseAudio.load();
-
 export default function App() {
   const [coinBankVal, setCoinBankVal] = useState(500); //money
   const [plants, setPlants] = useState([...Array(45).fill({})]);
@@ -33,11 +30,8 @@ export default function App() {
 
   const handleSetPlant = (index) => {
     // check plant exists and selected
-    if (!choosePlant) {
-      return alert("Vui lòng chọn cây cần trồng trước.");
-    }
-    if (!isEmptyObject(plants[index])) {
-      return pauseAudio.play();
+    if (!choosePlant || !isEmptyObject(plants[index])) {
+      return new Audio("./assets/sounds/pause.ogg").play();
     }
 
     // price action
@@ -51,6 +45,7 @@ export default function App() {
     const newPlants = [...plants];
     newPlants[index] = choosePlant;
     setPlants(newPlants);
+    setChoosePlant(null);
 
     // play sound plant
     const soundPlant = new Audio("./assets/sounds/plant.ogg");
@@ -62,6 +57,13 @@ export default function App() {
     const newPlants = [...plants];
     newPlants[index] = {};
     setPlants(newPlants);
+  };
+
+  const handleHarvestPlant = (index) => {
+    new Audio("./assets/sounds/coin.ogg").play();
+
+    const price = plants[index].salePrice || 0;
+    setCoinBankVal(coinBankVal + price);
   };
 
   return (
@@ -80,6 +82,7 @@ export default function App() {
           choosePlant={choosePlant}
           setPlant={handleSetPlant}
           deletePlant={handleDeletePlant}
+          harvestPlant={handleHarvestPlant}
         />
         <CoinBank coinBankVal={coinBankVal} />
         <div>
