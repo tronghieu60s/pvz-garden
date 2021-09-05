@@ -82,7 +82,7 @@
 .gd-sendBank {
   position: absolute;
   padding: 12px;
-  left: 50px;
+  left: 30px;
 }
 
 .gd-sendBank-item {
@@ -93,6 +93,10 @@
 }
 
 .gd-sendBank-item:hover {
+  transform: scale(1);
+}
+
+.gd-sendBank-item.active:hover {
   transform: scale(1.1);
 }
 
@@ -127,7 +131,7 @@
 .gd-coinBank {
   position: absolute;
   bottom: 20px;
-  left: 50px;
+  left: 30px;
   width: 128px;
   height: 31px;
   background-image: url(../images/inf/coinbank.png);

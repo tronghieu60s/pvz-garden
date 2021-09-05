@@ -10,14 +10,12 @@ import { objectToArray, isEmptyObject } from "./helpers/commonFunctions";
 const plantsList = objectToArray(plants);
 
 export default function App() {
-  const [coinBankVal, setCoinBankVal] = useState(99999); //money
+  const [coinBankVal, setCoinBankVal] = useState(500); //money
   const [plants, setPlants] = useState([...Array(45).fill({})]);
   const [choosePlant, setChoosePlant] = useState(null);
 
   const [isGetGlove, setIsGetGlove] = useState(false);
   const [isGetShovel, setIsGetShovel] = useState(false);
-  const [isNoMoreMoney, setIsNoMoreMoney] = useState(false);
-  const [modeTool, setModeTool] = useState("grow"); //grow, harvest, asperse, fertilize
 
   useEffect(() => {
     // block dragging of images
@@ -68,6 +66,7 @@ export default function App() {
     <div className="gd-container">
       <div className="gd-container-game">
         <SendBack
+          coinBankVal={coinBankVal}
           plants={plantsList}
           choosePlant={choosePlant}
           setChoosePlant={(plant) =>
