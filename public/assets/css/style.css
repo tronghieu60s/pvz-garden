@@ -6,12 +6,24 @@
   font-family: "Roboto", sans-serif;
 }
 
+/* CONTAINER */
+
+#root {
+  min-height: 100vh;
+  background-color: #000;
+}
+
 .gd-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100%;
+  background-color: #000;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -khtml-user-select: none;
@@ -24,10 +36,12 @@
   position: relative;
   width: 1000px;
   height: 500px;
-  background-image: url(../images/inf/background1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 20;
 }
+
+/* GARDEN */
 
 .gd-garden {
   position: absolute;
@@ -72,6 +86,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 600px;
 }
 
 .gd-garden-image img {
@@ -84,7 +99,16 @@
   bottom: 2px;
   width: 17px;
   height: 17px;
+  animation: coin-animation 4s linear infinite;
 }
+
+@keyframes coin-animation {
+  0% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* SEND BANK */
 
 .gd-sendBank {
   position: absolute;
@@ -135,6 +159,63 @@
   display: block;
 }
 
+/* START */
+
+.gd-start {
+  position: absolute;
+  left: 35%;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.gd-start h2 {
+  width: 200px;
+  color: yellow;
+  font-family: monospace;
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  z-index: 10;
+}
+
+.gd-start img {
+  position: absolute;
+}
+
+.gd-start img:nth-child(2) {
+  top: -76px;
+  z-index: 10;
+}
+
+.gd-start img:nth-child(3) {
+  top: -22px;
+}
+
+.gd-start-ready {
+  width: 400px;
+  height: 200px;
+  position: absolute;
+  z-index: 50;
+  background-image: url(../images/inf/StartSet.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: start-ready-animation 2s ease-in-out forwards;
+}
+
+@keyframes start-ready-animation {
+  0% {
+    background-image: url(../images/inf/StartSet.png);
+  }
+  50% {
+    background-image: url(../images/inf/StartReady.png);
+  }
+  100% {
+    background-image: url(../images/inf/StartPlant.png);
+  }
+}
+
+/* COIN */
+
 .gd-coinBank {
   position: absolute;
   bottom: 20px;
@@ -153,6 +234,8 @@
   transform: translate(-50%, -50%);
   color: #01c301;
 }
+
+/* BANK */
 
 .gd-bank {
   position: absolute;

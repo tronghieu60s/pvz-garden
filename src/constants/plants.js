@@ -1,7 +1,7 @@
 export default {
   plant1: {
-    timer: 40,
-    overTimer: 10,
+    timer: 10,
+    overTimer: 100,
     salePrice: 70,
     purchasePrice: 50,
     image0: "./assets/images/plant/Seed.png",
