@@ -191,6 +191,11 @@
   top: -22px;
 }
 
+.gd-start img:nth-child(5) {
+  left: 231px;
+  top: -70px;
+}
+
 .gd-start-ready {
   width: 400px;
   height: 200px;

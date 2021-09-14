@@ -8,6 +8,7 @@ export default function StartGame(props) {
       <img src="./assets/images/plant/Plant1A.gif" />
       <img src="./assets/images/inf/LoadBar_grass.png" />
       <img src="./assets/images/inf/LoadBar_dirt.png" />
+      <img src="./assets/images/inf/Night_grave_graphic.png" />
     </div>
   );
 }
