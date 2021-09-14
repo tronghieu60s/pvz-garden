@@ -1,25 +1,13 @@
-import React, { useEffect } from "react";
-
-const image = "./assets/images/inf/glove.png";
+import React from "react";
 
 export default function ToolsItem(props) {
-  const { style, image, isSelect, setIsSelect } = props;
-
-  useEffect(() => {
-    isSelect
-      ? (document.body.style.cursor = `url(${image}) 40 40, auto`)
-      : (document.body.style.cursor = `auto`);
-  }, [isSelect]);
+  const { style, name, isSelect, setIsSelect } = props;
 
   return (
-    <div
-      className="gd-bank"
-      style={style}
-      onClick={() => setIsSelect(!isSelect)}
-    >
+    <div className="gd-bank" style={style} onClick={() => setIsSelect(name === isSelect ? "" : name)}>
       <div
-        className={isSelect ? "" : "gd-bank-image"}
-        style={{ backgroundImage: `url(${image})` }}
+        className={isSelect === name ? "" : "gd-bank-image"}
+        style={{ backgroundImage: `url(./assets/images/inf/${name}.png)` }}
       ></div>
     </div>
   );

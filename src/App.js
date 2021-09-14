@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CoinBank from "./components/CoinBank";
 import Garden from "./components/Garden";
 import SendBack from "./components/SendBank/index";
@@ -9,13 +9,15 @@ import { isEmptyObject, objectToArray } from "./helpers/commonFunctions";
 
 const plantsList = objectToArray(plants);
 
-const infImage = "./assets/images/inf/";
-
 const backgroundImages = [
   "background0.jpg",
   "background1.jpg",
   "background2.jpg",
 ];
+
+const infImage = "./assets/images/inf/";
+
+window.ondragstart = () => false;
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -25,13 +27,12 @@ export default function App() {
   const [plants, setPlants] = useState([...Array(45).fill({})]);
   const [choosePlant, setChoosePlant] = useState(null);
 
-  const [isGetGlove, setIsGetGlove] = useState(false);
-  const [isGetShovel, setIsGetShovel] = useState(false);
+  const [toolSelected, setToolSelected] = useState("");
 
-  useEffect(() => {
-    // block dragging of images
-    window.ondragstart = () => false;
-  }, []);
+  const handleToolSelect = (name) => {
+    document.body.style.cursor = `url(${infImage}${name}.png) 40 40, auto`;
+    setToolSelected(name);
+  };
 
   const handleSoundTrack = () => {
     setIsReady(false);
@@ -68,8 +69,7 @@ export default function App() {
     setChoosePlant(null);
 
     // play sound plant
-    const soundPlant = new Audio("./assets/sounds/plant.ogg");
-    soundPlant.play();
+    new Audio("./assets/sounds/plant.ogg").play();
   };
 
   const handleDeletePlant = (index) => {
@@ -106,44 +106,42 @@ export default function App() {
           <Garden
             plants={plants}
             choosePlant={choosePlant}
-            isGetGlove={isGetGlove}
-            setIsGetGlove={setIsGetGlove}
-            isGetShovel={isGetShovel}
-            setIsGetShovel={setIsGetShovel}
+            toolSelected={toolSelected}
+            setToolSelected={handleToolSelect}
             setPlant={handleSetPlant}
             deletePlant={handleDeletePlant}
             harvestPlant={handleHarvestPlant}
           />
           <CoinBank coinBankVal={coinBankVal} />
-          <div>
+          <div className="gd-bank-list">
             <ToolsItem
-              image="./assets/images/inf/glove.png"
-              isSelect={isGetGlove}
-              setIsSelect={setIsGetGlove}
+              name="glove"
+              isSelect={toolSelected}
+              setIsSelect={handleToolSelect}
             />
             <ToolsItem
+              name="shovel"
               style={{ top: "105px" }}
-              image="./assets/images/inf/shovel.png"
-              isSelect={isGetShovel}
-              setIsSelect={setIsGetShovel}
+              isSelect={toolSelected}
+              setIsSelect={handleToolSelect}
             />
             <ToolsItem
+              name="tree-food"
               style={{ top: "360px" }}
-              image="./assets/images/inf/tree-food.png"
-              isSelect={isGetShovel}
-              setIsSelect={setIsGetShovel}
+              isSelect={toolSelected}
+              setIsSelect={handleToolSelect}
             />
             <ToolsItem
+              name="watering-can"
               style={{ top: "190px" }}
-              image="./assets/images/inf/watering_can.png"
-              isSelect={isGetShovel}
-              setIsSelect={setIsGetShovel}
+              isSelect={toolSelected}
+              setIsSelect={handleToolSelect}
             />
             <ToolsItem
+              name="phonograph"
               style={{ top: "275px" }}
-              image="./assets/images/inf/phonograph.png"
-              isSelect={isGetShovel}
-              setIsSelect={setIsGetShovel}
+              isSelect={toolSelected}
+              setIsSelect={handleToolSelect}
             />
           </div>
         </div>

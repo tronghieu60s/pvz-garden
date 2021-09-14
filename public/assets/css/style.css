@@ -238,14 +238,24 @@
 /* BANK */
 
 .gd-bank {
-  position: absolute;
-  top: 20px;
-  right: 40px;
   width: 70px;
   height: 72px;
   background-image: url(../images/inf/bank.png);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.gd-bank-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 85%;
 }
 
 .gd-bank-image {

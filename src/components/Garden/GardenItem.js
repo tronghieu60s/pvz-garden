@@ -4,10 +4,8 @@ import { isEmptyObject } from "../../helpers/commonFunctions";
 export default function GardenItem(props) {
   const {
     plant,
-    isGetGlove,
-    setIsGetGlove,
-    isGetShovel,
-    setIsGetShovel,
+    toolSelected,
+    setToolSelected,
     choosePlant,
     setPlant,
     deletePlant,
@@ -62,21 +60,38 @@ export default function GardenItem(props) {
   useEffect(() => setTimer(plant.timer), [plant]);
 
   const onClick = () => {
-    if (isGetShovel) {
+    if (toolSelected === "") {
+      setPlant();
+    }
+
+    if (toolSelected === "glove") {
+      if (plantStatus >= 2) {
+        harvestPlant();
+        plantHarvestHandler();
+      } else {
+        new Audio("./assets/sounds/pause.ogg").play();
+      }
+    }
+
+    if (toolSelected === "shovel") {
       deletePlant();
       setPlantStatus(0);
-      setIsGetShovel(!isGetShovel);
-      return;
+      new Audio("./assets/sounds/plant.ogg").play();
     }
 
-    if (plantStatus >= 2 && isGetGlove) {
-      harvestPlant();
-      plantHarvestHandler();
-      setIsGetGlove(!isGetGlove);
-      return; 
+    if (toolSelected === "tree-food") {
+      new Audio("./assets/sounds/tree-food.ogg").play();
     }
 
-    setPlant();
+    if (toolSelected === "watering-can") {
+      new Audio("./assets/sounds/watering-can.ogg").play();
+    }
+
+    if (toolSelected === "phonograph") {
+      new Audio("./assets/sounds/phonograph.ogg").play();
+    }
+
+    setToolSelected("");
   };
 
   const styleOvertime = plantStatus === 2 ? " over-timer" : "";
