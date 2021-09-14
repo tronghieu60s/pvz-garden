@@ -240,7 +240,7 @@
 .gd-bank {
   position: absolute;
   top: 20px;
-  right: 50px;
+  right: 40px;
   width: 70px;
   height: 72px;
   background-image: url(../images/inf/bank.png);
@@ -249,7 +249,7 @@
 }
 
 .gd-bank-image {
-  width: 70px;
+  width: 60px;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center center;

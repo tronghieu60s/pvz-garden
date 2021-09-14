@@ -5,15 +5,19 @@ export default function sendBankItem(props) {
 
   const isActive =
     plant?.key !== choosePlant?.key && coinBankVal >= plant?.purchasePrice;
+  const isSelect = plant?.key === choosePlant?.key;
   const onClick = () => {
     if (coinBankVal >= plant?.purchasePrice) {
       setChoosePlant(plant);
+    } else {
+      new Audio("./assets/sounds/pause.ogg").play();
     }
   };
 
   return (
     <div
       className={`gd-sendBank-item${isActive ? " active" : ""}`}
+      style={{ color: isSelect ? "red" : "black" }}
       onClick={onClick}
     >
       <img src={plant.image1b} />

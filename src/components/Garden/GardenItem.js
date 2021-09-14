@@ -1,8 +1,18 @@
 import React, { Fragment, memo, useEffect, useState } from "react";
-import { isEmptyObject } from "../helpers/commonFunctions";
+import { isEmptyObject } from "../../helpers/commonFunctions";
 
 export default function GardenItem(props) {
-  const { plant, choosePlant, setPlant, deletePlant, harvestPlant } = props;
+  const {
+    plant,
+    isGetGlove,
+    setIsGetGlove,
+    isGetShovel,
+    setIsGetShovel,
+    choosePlant,
+    setPlant,
+    deletePlant,
+    harvestPlant,
+  } = props;
 
   const [timer, setTimer] = useState(props.plant.timer || 0);
   const [plantHarvest, setPlantHarvest] = useState(0);
@@ -14,10 +24,10 @@ export default function GardenItem(props) {
     setPlantStatus(1);
 
     const newPlantHarvest = plantHarvest + 1;
-    setPlantHarvest(newPlantHarvest);
     if (newPlantHarvest >= 3) {
       deletePlant();
     }
+    setPlantHarvest(newPlantHarvest);
   };
 
   const onPlantStatus = () => {
@@ -52,13 +62,21 @@ export default function GardenItem(props) {
   useEffect(() => setTimer(plant.timer), [plant]);
 
   const onClick = () => {
-    if (plantStatus < 2) {
-      setPlant();
+    if (isGetShovel) {
+      deletePlant();
       setPlantStatus(0);
-    } else {
+      setIsGetShovel(!isGetShovel);
+      return;
+    }
+
+    if (plantStatus >= 2 && isGetGlove) {
       harvestPlant();
       plantHarvestHandler();
+      setIsGetGlove(!isGetGlove);
+      return; 
     }
+
+    setPlant();
   };
 
   const styleOvertime = plantStatus === 2 ? " over-timer" : "";
@@ -81,7 +99,7 @@ export default function GardenItem(props) {
             {plantStatus === 2 && (
               <img
                 className="gd-garden-image-coin"
-                src="./assets/images/inf/coin_gold_dollar.png"
+                src="./assets/images/inf/coin_silver_dollar.png"
               />
             )}
             {isEmptyObject(plant) && (
