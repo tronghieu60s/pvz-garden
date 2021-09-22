@@ -1,36 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CoinBank from "./components/CoinBank";
 import Garden from "./components/Garden";
 import SendBack from "./components/SendBank/index";
 import StartGame from "./components/StartGame";
 import ToolsItem from "./components/ToolsItem";
+import {
+  PATH_BACKGROUND_IMAGES,
+  PATH_COIN_SOUND,
+  PATH_INF,
+  PATH_PAUSE_SOUND,
+  PATH_PLANT_SOUND,
+  PATH_QUIT_IMAGE,
+  PATH_READY_SOUND,
+} from "./constants/config";
 import plants from "./constants/plants";
 import { isEmptyObject, objectToArray } from "./helpers/commonFunctions";
 
+window.ondragstart = () => false;
 const plantsList = objectToArray(plants);
 
-const backgroundImages = [
-  "background0.jpg",
-  "background1.jpg",
-  "background2.jpg",
-];
-
-const infImage = "./assets/images/inf/";
-
-window.ondragstart = () => false;
-
 export default function App() {
-  const [isReady, setIsReady] = useState(false);
-  const [background, setBackground] = useState(backgroundImages[-1]);
+  const [isReady, setIsReady] = useState(false); // ready to start game
+  const [background, setBackground] = useState(PATH_BACKGROUND_IMAGES[-1]); // background images
 
-  const [coinBankVal, setCoinBankVal] = useState(500); //money
-  const [plants, setPlants] = useState([...Array(45).fill({})]);
-  const [choosePlant, setChoosePlant] = useState(null);
+  const [toolSelected, setToolSelected] = useState(""); // selected tool
+  const [coinBankVal, setCoinBankVal] = useState(500); // money
+  const [plants, setPlants] = useState([...Array(45).fill({})]); // plants 9 x 5 = 45 plants
+  const [choosePlant, setChoosePlant] = useState(null); // plant selected
 
-  const [toolSelected, setToolSelected] = useState("");
+  useEffect(() => {
+    // if game started
+    const started = localStorage.getItem("game-started");
+    if (started) {
+      // set background image
+      setBackground(PATH_BACKGROUND_IMAGES[Math.floor(Math.random() * 3)]);
+      handleSoundTrack();
+
+      // get background from localStorage
+      const background = localStorage.getItem("game-background");
+      setBackground(background);
+
+      // get plants from localStorage
+      const plants = localStorage.getItem("game-plants");
+      setPlants(JSON.parse(plants));
+    }
+  }, []);
+
+  useEffect(
+    () => localStorage.setItem("game-plants", JSON.stringify(plants)),
+    [plants]
+  );
+
+  /* Handle Others */
 
   const handleToolSelect = (name) => {
-    document.body.style.cursor = `url(${infImage}${name}.png) 40 40, auto`;
+    document.body.style.cursor = `url(${PATH_INF}${name}.png) 40 40, auto`;
     setToolSelected(name);
   };
 
@@ -42,20 +66,38 @@ export default function App() {
     // soundTrack.play();
   };
 
+  /* Handle Game */
+
   const handleStartGame = async () => {
+    const background = PATH_BACKGROUND_IMAGES[Math.floor(Math.random() * 3)];
+    setBackground(background);
     setIsReady(true);
-    setBackground(backgroundImages[Math.floor(Math.random() * 3)]);
 
     // sound track
-    const soundReady = new Audio("./assets/sounds/readysetplant.mp3");
+    const soundReady = new Audio(PATH_READY_SOUND);
     soundReady.play();
     soundReady.onended = () => handleSoundTrack();
+
+    // storage started
+    localStorage.setItem("game-started", true);
+    localStorage.setItem("game-background", background);
   };
+
+  const handleQuitGame = () => {
+    if (confirm("Are you sure you want to quit?")) {
+      localStorage.removeItem("game-started");
+      localStorage.removeItem("game-background");
+      localStorage.removeItem("game-plants");
+      window.location.reload();
+    }
+  };
+
+  /* Handle Plants */
 
   const handleSetPlant = (index) => {
     // check plant exists and selected
     if (!choosePlant || !isEmptyObject(plants[index])) {
-      return new Audio("./assets/sounds/pause.ogg").play();
+      return new Audio(PATH_PAUSE_SOUND).play();
     }
 
     // price action
@@ -69,7 +111,7 @@ export default function App() {
     setChoosePlant(null);
 
     // play sound plant
-    new Audio("./assets/sounds/plant.ogg").play();
+    new Audio(PATH_PLANT_SOUND).play();
   };
 
   const handleDeletePlant = (index) => {
@@ -80,20 +122,30 @@ export default function App() {
   };
 
   const handleHarvestPlant = (index) => {
-    new Audio("./assets/sounds/coin.ogg").play();
+    new Audio(PATH_COIN_SOUND).play();
 
     const price = plants[index].salePrice || 0;
     setCoinBankVal(coinBankVal + price);
   };
 
+  const rdZombieNote = `ZombieNote${Math.floor(
+    Math.random() * (5 - 1) + 1
+  )}.png`;
+  const backgroundImage = background !== undefined ? `url(${background})` : "";
+
   return (
-    <div className="gd-container">
+    <div
+      className="gd-container"
+      style={{ backgroundImage: `url(${PATH_INF}${rdZombieNote})` }}
+    >
       {isReady && <div className="gd-start-ready"></div>}
+      {background !== undefined && (
+        <div className="gd-quit">
+          <img src={PATH_QUIT_IMAGE} onClick={handleQuitGame} />
+        </div>
+      )}
       {background === undefined && <StartGame onClick={handleStartGame} />}
-      <div
-        className="gd-container-game"
-        style={{ backgroundImage: `url(${infImage}${background})` }}
-      >
+      <div className="gd-container-game" style={{ backgroundImage }}>
         <div style={{ display: background === undefined ? "none" : "block" }}>
           <SendBack
             coinBankVal={coinBankVal}

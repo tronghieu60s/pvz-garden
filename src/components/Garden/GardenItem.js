@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { isEmptyObject } from "../../helpers/commonFunctions";
 
 export default function GardenItem(props) {
@@ -33,6 +33,7 @@ export default function GardenItem(props) {
       // time tree change to level 1
       setPlantStatus(1);
     }
+
     // the plant has grown and set over time
     if (timer < 0 && plantStatus < 2) {
       setPlantStatus(2);
@@ -57,6 +58,7 @@ export default function GardenItem(props) {
       };
     }
   });
+
   useEffect(() => setTimer(plant.timer), [plant]);
 
   const onClick = () => {
