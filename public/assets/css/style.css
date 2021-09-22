@@ -111,6 +111,13 @@
   animation: coin-animation 4s linear infinite;
 }
 
+.gd-garden-image-need {
+  position: absolute;
+  width: 25px;
+  top: -5px;
+  right: -5px;
+}
+
 @keyframes coin-animation {
   0% {
     transform: rotateY(360deg);
@@ -269,7 +276,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 150px;
-  height: 100%;
+  height: 90%;
 }
 
 .gd-bank-image {

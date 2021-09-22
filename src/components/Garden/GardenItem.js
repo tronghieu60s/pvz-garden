@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { isEmptyObject } from "../../helpers/commonFunctions";
+import { PATH_INF } from "../../constants/config";
 
 export default function GardenItem(props) {
   const {
@@ -12,10 +13,12 @@ export default function GardenItem(props) {
     harvestPlant,
   } = props;
 
-  const [timer, setTimer] = useState(props.plant.timer || 0);
-  const [plantHarvest, setPlantHarvest] = useState(0);
-  const [plantBlur, setPlantBlur] = useState(null);
-  const [plantStatus, setPlantStatus] = useState(0);
+  const [plantBlur, setPlantBlur] = useState(null); // for blur effect
+  const [plantNeed, setPlantNeed] = useState(null); // need water-can, need tree-food, need phonograph
+
+  const [timer, setTimer] = useState(props.plant.timer || 0); // timer for plant
+  const [plantHarvest, setPlantHarvest] = useState(0); // plant harvest
+  const [plantStatus, setPlantStatus] = useState(0); // 0: plant, 1: harvest, 2: ready dead
 
   const plantHarvestHandler = () => {
     setTimer(plant.timer / 2);
@@ -24,6 +27,9 @@ export default function GardenItem(props) {
     const newPlantHarvest = plantHarvest + 1;
     if (newPlantHarvest >= 3) {
       deletePlant();
+      setPlantStatus(0);
+      setPlantHarvest(0);
+      return;
     }
     setPlantHarvest(newPlantHarvest);
   };
@@ -47,12 +53,45 @@ export default function GardenItem(props) {
   };
 
   useEffect(() => {
+    const timerNeed = setInterval(() => {
+      if (!plantNeed) {
+        return;
+      }
+
+      const rdPercent = Math.floor(Math.random() * 100);
+      console.log(rdPercent);
+
+      // 1% chance to change plant need
+      if (rdPercent === 25) {
+        setPlantNeed("watering-can");
+      }
+
+      // 1% chance to change plant need
+      if (rdPercent === 50) {
+        setPlantNeed("tree-food");
+      }
+
+      // 1% chance to change plant need
+      if (rdPercent === 75) {
+        setPlantNeed("phonograph");
+      }
+    }, 2000);
+    return () => {
+      clearInterval(timerNeed);
+    };
+  });
+
+  useEffect(() => {
     onPlantStatus();
     // set timer count down
     if (timer > 0) {
+      if (timer < plant?.timer / 2 && plantNeed) {
+        return;
+      }
       const timerCount = setInterval(() => {
         setTimer(timer - 0.1);
       }, 100);
+
       return () => {
         clearInterval(timerCount);
       };
@@ -64,33 +103,24 @@ export default function GardenItem(props) {
   const onClick = () => {
     if (toolSelected === "") {
       setPlant();
-    }
-
-    if (toolSelected === "glove") {
+    } else if (toolSelected === "glove") {
       if (plantStatus >= 2) {
         harvestPlant();
         plantHarvestHandler();
       } else {
         new Audio("./assets/sounds/pause.ogg").play();
       }
-    }
-
-    if (toolSelected === "shovel") {
+    } else if (toolSelected === "shovel") {
       deletePlant();
+      setPlantNeed(null);
       setPlantStatus(0);
+      setPlantHarvest(0);
       new Audio("./assets/sounds/plant.ogg").play();
-    }
-
-    if (toolSelected === "tree-food") {
-      new Audio("./assets/sounds/tree-food.ogg").play();
-    }
-
-    if (toolSelected === "watering-can") {
-      new Audio("./assets/sounds/watering-can.ogg").play();
-    }
-
-    if (toolSelected === "phonograph") {
-      new Audio("./assets/sounds/phonograph.ogg").play();
+    } else if (toolSelected === plantNeed) {
+      setPlantNeed(null);
+      new Audio(`./assets/sounds/${plantNeed}.ogg`).play();
+    } else {
+      new Audio("./assets/sounds/pause.ogg").play();
     }
 
     setToolSelected("");
@@ -113,6 +143,12 @@ export default function GardenItem(props) {
             style={{ width: `${plant?.imageSize}px` }}
           >
             <img src={imageSource} />
+            {plantNeed && (
+              <img
+                src={`${PATH_INF}${plantNeed}.png`}
+                className="gd-garden-image-need"
+              />
+            )}
             {plantStatus === 2 && (
               <img
                 className="gd-garden-image-coin"

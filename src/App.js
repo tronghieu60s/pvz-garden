@@ -43,12 +43,20 @@ export default function App() {
       // get plants from localStorage
       const plants = localStorage.getItem("game-plants");
       setPlants(JSON.parse(plants));
+
+      const coinBank = localStorage.getItem("game-coin-bank");
+      setCoinBankVal(coinBank);
     }
   }, []);
 
   useEffect(
     () => localStorage.setItem("game-plants", JSON.stringify(plants)),
     [plants]
+  );
+
+  useEffect(
+    () => localStorage.setItem("game-coin-bank", coinBankVal),
+    [coinBankVal]
   );
 
   /* Handle Others */
@@ -88,6 +96,7 @@ export default function App() {
       localStorage.removeItem("game-started");
       localStorage.removeItem("game-background");
       localStorage.removeItem("game-plants");
+      localStorage.removeItem("game-coin-bank");
       window.location.reload();
     }
   };

@@ -1,4 +1,4 @@
-# Garden Game
+# PVZ Garden Game
 
 ![version](https://img.shields.io/github/package-json/v/tronghieu60s/garden-game)
 ![code-size](https://img.shields.io/github/languages/code-size/tronghieu60s/garden-game)
