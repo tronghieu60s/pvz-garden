@@ -1,7 +1,7 @@
 export default {
   plant1: {
     timer: 40,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 70,
     purchasePrice: 50,
     image0: "./assets/images/plant/Seed.png",
@@ -12,7 +12,7 @@ export default {
   },
   plant2: {
     timer: 50,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 140,
     purchasePrice: 100,
     image0: "./assets/images/plant/Seed.png",
@@ -23,7 +23,7 @@ export default {
   },
   plant3: {
     timer: 60,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 210,
     purchasePrice: 150,
     image0: "./assets/images/plant/Seed.png",
@@ -34,7 +34,7 @@ export default {
   },
   plant4: {
     timer: 40,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 70,
     purchasePrice: 50,
     image0: "./assets/images/plant/Seed.png",
@@ -45,7 +45,7 @@ export default {
   },
   plant5: {
     timer: 70,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 245,
     purchasePrice: 175,
     image0: "./assets/images/plant/Seed.png",
@@ -56,7 +56,7 @@ export default {
   },
   plant6: {
     timer: 40,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 70,
     purchasePrice: 50,
     image0: "./assets/images/plant/Seed.png",
@@ -67,7 +67,7 @@ export default {
   },
   plant7: {
     timer: 80,
-    overTimer: 10,
+    overTimer: 5,
     salePrice: 280,
     purchasePrice: 200,
     image0: "./assets/images/plant/Seed.png",

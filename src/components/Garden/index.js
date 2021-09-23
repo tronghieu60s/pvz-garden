@@ -11,7 +11,7 @@ export default function Garden(props) {
           plant={plant}
           setPlant={() => setPlant(index)}
           deletePlant={() => deletePlant(index)}
-          harvestPlant={() => harvestPlant(index)}
+          harvestPlant={harvestPlant}
           {...othersProps}
         />
       ))}

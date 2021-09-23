@@ -20,7 +20,7 @@ export default function GardenItem(props) {
   const [plantHarvest, setPlantHarvest] = useState(0); // plant harvest
   const [plantStatus, setPlantStatus] = useState(0); // 0: plant, 1: harvest, 2: ready dead
 
-  const plantHarvestHandler = () => {
+  const onPlantHarvest = () => {
     setTimer(plant.timer / 2);
     setPlantStatus(1);
 
@@ -29,8 +29,10 @@ export default function GardenItem(props) {
       deletePlant();
       setPlantStatus(0);
       setPlantHarvest(0);
+      setPlantNeed(null);
       return;
     }
+    setPlantNeed(null);
     setPlantHarvest(newPlantHarvest);
   };
 
@@ -48,34 +50,49 @@ export default function GardenItem(props) {
 
     // plant status === 2 => did over time
     if (timer < 0 && plantStatus === 2) {
-      plantHarvestHandler();
+      onPlantHarvest();
     }
+  };
+
+  const onPlantNeed = (value) => {
+    if (
+      plantNeed ||
+      isEmptyObject(plant) ||
+      timer > plant.timer / 2 ||
+      plantStatus >= 2
+    ) {
+      return;
+    }
+
+    setPlantNeed(value);
+    setPlantStatus(2);
+    setTimer(plant.overTimer);
   };
 
   useEffect(() => {
     const timerNeed = setInterval(() => {
-      if (!plantNeed) {
+      const rdTotalPercent = Math.floor(Math.random() * 100);
+      if (rdTotalPercent < 90) {
         return;
       }
 
       const rdPercent = Math.floor(Math.random() * 100);
-      console.log(rdPercent);
 
       // 1% chance to change plant need
       if (rdPercent === 25) {
-        setPlantNeed("watering-can");
+        onPlantNeed("watering-can");
       }
 
       // 1% chance to change plant need
       if (rdPercent === 50) {
-        setPlantNeed("tree-food");
+        onPlantNeed("tree-food");
       }
 
       // 1% chance to change plant need
       if (rdPercent === 75) {
-        setPlantNeed("phonograph");
+        onPlantNeed("phonograph");
       }
-    }, 2000);
+    }, 100);
     return () => {
       clearInterval(timerNeed);
     };
@@ -85,12 +102,12 @@ export default function GardenItem(props) {
     onPlantStatus();
     // set timer count down
     if (timer > 0) {
-      if (timer < plant?.timer / 2 && plantNeed) {
-        return;
-      }
-      const timerCount = setInterval(() => {
-        setTimer(timer - 0.1);
-      }, 100);
+      const timerCount = setInterval(
+        () => {
+          setTimer(timer - 0.1);
+        },
+        plantNeed ? 50 : 100
+      );
 
       return () => {
         clearInterval(timerCount);
@@ -105,8 +122,8 @@ export default function GardenItem(props) {
       setPlant();
     } else if (toolSelected === "glove") {
       if (plantStatus >= 2) {
-        harvestPlant();
-        plantHarvestHandler();
+        harvestPlant(plantNeed ? plant.salePrice / 2 : plant.salePrice);
+        onPlantHarvest();
       } else {
         new Audio("./assets/sounds/pause.ogg").play();
       }
@@ -118,6 +135,8 @@ export default function GardenItem(props) {
       new Audio("./assets/sounds/plant.ogg").play();
     } else if (toolSelected === plantNeed) {
       setPlantNeed(null);
+      setPlantStatus(1);
+      setTimer(plant.overTimer * 2);
       new Audio(`./assets/sounds/${plantNeed}.ogg`).play();
     } else {
       new Audio("./assets/sounds/pause.ogg").play();

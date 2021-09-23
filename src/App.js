@@ -24,7 +24,7 @@ export default function App() {
   const [background, setBackground] = useState(PATH_BACKGROUND_IMAGES[-1]); // background images
 
   const [toolSelected, setToolSelected] = useState(""); // selected tool
-  const [coinBankVal, setCoinBankVal] = useState(500); // money
+  const [coinBankVal, setCoinBankVal] = useState(100); // money
   const [plants, setPlants] = useState([...Array(45).fill({})]); // plants 9 x 5 = 45 plants
   const [choosePlant, setChoosePlant] = useState(null); // plant selected
 
@@ -40,19 +40,10 @@ export default function App() {
       const background = localStorage.getItem("game-background");
       setBackground(background);
 
-      // get plants from localStorage
-      const plants = localStorage.getItem("game-plants");
-      setPlants(JSON.parse(plants));
-
       const coinBank = localStorage.getItem("game-coin-bank");
-      setCoinBankVal(coinBank);
+      setCoinBankVal(parseInt(coinBank));
     }
   }, []);
-
-  useEffect(
-    () => localStorage.setItem("game-plants", JSON.stringify(plants)),
-    [plants]
-  );
 
   useEffect(
     () => localStorage.setItem("game-coin-bank", coinBankVal),
@@ -62,16 +53,16 @@ export default function App() {
   /* Handle Others */
 
   const handleToolSelect = (name) => {
-    document.body.style.cursor = `url(${PATH_INF}${name}.png) 40 40, auto`;
+    document.body.style.cursor = name ? `url(${PATH_INF}${name}.png) 40 40, auto` : "";
     setToolSelected(name);
   };
 
   const handleSoundTrack = () => {
     setIsReady(false);
 
-    // const soundTrack = new Audio("./assets/sounds/soundtrack.mp3");
-    // soundTrack.loop = true;
-    // soundTrack.play();
+    const soundTrack = new Audio("./assets/sounds/soundtrack.mp3");
+    soundTrack.loop = true;
+    soundTrack.play();
   };
 
   /* Handle Game */
@@ -95,7 +86,6 @@ export default function App() {
     if (confirm("Are you sure you want to quit?")) {
       localStorage.removeItem("game-started");
       localStorage.removeItem("game-background");
-      localStorage.removeItem("game-plants");
       localStorage.removeItem("game-coin-bank");
       window.location.reload();
     }
@@ -130,10 +120,8 @@ export default function App() {
     setPlants(newPlants);
   };
 
-  const handleHarvestPlant = (index) => {
+  const handleHarvestPlant = (price = 0) => {
     new Audio(PATH_COIN_SOUND).play();
-
-    const price = plants[index].salePrice || 0;
     setCoinBankVal(coinBankVal + price);
   };
 
