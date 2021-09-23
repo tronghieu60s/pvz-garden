@@ -50,10 +50,21 @@ export default function App() {
     [coinBankVal]
   );
 
+  useEffect(() => {
+    const everyEmpty = plants.every(o => isEmptyObject(o));
+    if (everyEmpty && coinBankVal < 50) {
+      alert("Game over!");
+      localStorage.removeItem("game-started");
+      window.location.reload();
+    }
+  });
+
   /* Handle Others */
 
   const handleToolSelect = (name) => {
-    document.body.style.cursor = name ? `url(${PATH_INF}${name}.png) 40 40, auto` : "";
+    document.body.style.cursor = name
+      ? `url(${PATH_INF}${name}.png) 40 40, auto`
+      : "";
     setToolSelected(name);
   };
 
