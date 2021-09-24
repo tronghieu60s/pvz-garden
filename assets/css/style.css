@@ -42,7 +42,7 @@
 
 .gd-container-game {
   position: relative;
-  width: 1000px;
+  width: 960px;
   height: 500px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -53,7 +53,7 @@
 
 .gd-garden {
   position: absolute;
-  left: 21.2%;
+  left: 22.2%;
   top: 14%;
   width: 606px;
   height: 405px;
