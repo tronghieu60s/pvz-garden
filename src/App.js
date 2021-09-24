@@ -30,6 +30,7 @@ export default function App() {
 
   useEffect(() => {
     // if game started
+    window.scrollTo(0, 1);
     const started = localStorage.getItem("game-started");
     if (started) {
       // set background image
