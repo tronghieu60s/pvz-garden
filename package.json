@@ -1,5 +1,5 @@
 {
-  "name": "garden-game",
+  "name": "pvz-garden",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tronghieu60s/garden-game.git"
+    "url": "git+https://github.com/tronghieu60s/pvz-garden.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tronghieu60s/garden-game/issues"
+    "url": "https://github.com/tronghieu60s/pvz-garden/issues"
   },
-  "homepage": "https://tronghieu60s.github.io/garden-game",
+  "homepage": "https://tronghieu60s.github.io/pvz-garden",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
